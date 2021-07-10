@@ -15,6 +15,8 @@ const Product = require("./resolvers/Product");
 const Cart = require("./resolvers/Cart");
 const Payment = require("./resolvers/Payment");
 
+const port=process.env.PORT || 4000;
+
 
 const schema = loadSchemaSync(join(__dirname, "./schema.graphql"), {
     loaders: [new GraphQLFileLoader()],
@@ -36,6 +38,6 @@ app.use('/', graphqlHTTP({
     graphiql: true,
 }));
 
-app.listen(4000, () => {
-    console.log('server is running on port 4000')
+app.listen(port, () => {
+    console.log('server is running on port ',port)
 });
