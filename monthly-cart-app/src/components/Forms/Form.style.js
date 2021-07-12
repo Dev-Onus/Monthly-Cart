@@ -1,19 +1,14 @@
 import styled from "react-emotion";
 
-export const Wrapper = styled("div")`
-  display: flex;
-  position: relative;
-
-  justify-content: center;
+export const Wrapper = styled("fragment")`
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
   padding: 10px;
   height: 400px;
   width: 600px;
-  left: 25%;
-  margin: 171px;
-  &:last-of-type {
-    margin-bottom: 0;
-  }
   border-radius: 10px;
   box-shadow: 0px 0px 16px -2px rgba(0, 0, 0, 0.37);
 `;
@@ -32,13 +27,17 @@ export const InputField = styled("input")`
 `;
 
 export const Button = styled("button")`
-  background-color: #2185d0;
+  background-color: #3f20ba;
   color: #ffffff;
   text-shadow: none;
   background-image: none;
   padding: 0.6rem 1.5rem;
   margin: 10px;
   border-radius: 8px;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  font-weight: 600;
   cursor: pointer;
 `;
 
@@ -48,12 +47,12 @@ export const Title = styled("h3")`
   font-weight: 400;
 `;
 
-export const Status = styled("div")`
-  font-size: 10px;
-  display: inline-block;
-  padding: 8px;
-  border-radius: 25px;
-  color: white;
-  font-size: 11px;
-  font-weight: bold;
-`;
+// export const Status = styled("div")`
+//   font-size: 10px;
+//   display: inline-block;
+//   padding: 8px;
+//   border-radius: 25px;
+//   color: white;
+//   font-size: 11px;
+//   font-weight: bold;
+// `;

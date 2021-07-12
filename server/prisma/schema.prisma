@@ -8,13 +8,12 @@ datasource db {
 }
 
 model User {
-  id        Int      @unique @default(autoincrement())
-  userName  String?  @unique
-  password  String
-  name      String?
-  cart      Cart?
-  payment   Payment?  
-
+  id       Int      @unique @default(autoincrement())
+  userName String?  @unique
+  password String
+  name     String?
+  cart     Cart?
+  payment  Payment?
 }
 
 model Product {
@@ -23,22 +22,22 @@ model Product {
   price       Float?
   description String
   cartID      Int
-  cart        Cart    @relation(fields: [cartID], references: [id])
   paymentID   String
-  payment     Payment @relation(fields: [paymentID],references:[id])
+  cart        Cart    @relation(fields: [cartID], references: [id])
+  payment     Payment @relation(fields: [paymentID], references: [id])
 }
 
 model Cart {
   id      Int       @unique @default(autoincrement())
+  userID  Int       @unique
+  user    User      @relation(fields: [userID], references: [id])
   Product Product[]
-  userID  Int
-  user    User? @relation(fields: [userID], references: [id])
 }
 
 model Payment {
-  id     String @unique
-  userID  Int?
-  user   User?  @relation(fields: [userID], references: [id])
-  amount Int?
-  products  Product[]
+  id       String    @unique
+  amount   Int?
+  userID   Int?      @unique
+  user     User?     @relation(fields: [userID], references: [id])
+  products Product[]
 }

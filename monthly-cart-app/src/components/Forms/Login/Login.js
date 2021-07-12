@@ -35,46 +35,44 @@ function LoginForm(props) {
 
   return (
     <Wrapper>
-      <Fragment>
-        <form onSubmit={handleSubmit}>
-          <Title>Sign In</Title>{" "}
-          <div>
-            <InputField
-              name="mobileNumber"
-              placeholder="Enter Your Mobile Number"
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div>
-            <InputField
-              name="password"
-              onChange={handleChange}
-              placeholder="Enter Your Password"
-              required
-            />
-          </div>
-          <div>
-            {/* <button size="small" component={LinkBtn} to="/reset-password">
+      <form onSubmit={handleSubmit}>
+        <Title>Sign In</Title>{" "}
+        <div>
+          <InputField
+            name="mobileNumber"
+            placeholder="Enter Your Mobile Number"
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <InputField
+            name="password"
+            onChange={handleChange}
+            placeholder="Enter Your Password"
+            required
+          />
+        </div>
+        <div>
+          {/* <button size="small" component={LinkBtn} to="/reset-password">
             Forgot Password
           </button> */}
-          </div>
-          <div>
-            <Button
-              variant="contained"
-              color="primary"
-              size="large"
-              type="submit"
-              // disabled={submitting}
-            >
-              Continue
-            </Button>
-          </div>
-          <div>
-            <NavLink to="/register">Don't have an Account? Sign Up</NavLink>
-          </div>
-        </form>
-      </Fragment>
+        </div>
+        <div>
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            type="submit"
+            // disabled={submitting}
+          >
+            Continue
+          </Button>
+        </div>
+        <div>
+          <NavLink to="/register">Don't have an Account? Sign Up</NavLink>
+        </div>
+      </form>
     </Wrapper>
   );
 }
