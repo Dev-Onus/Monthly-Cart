@@ -11,16 +11,18 @@ const Mutation = {
         },
       })
       .then((data) => {
-        if (data.length !== 0) console.log("Username exists!");
+        if (data.length === 0){
+          const newUser = await prisma.user.create({
+            data: {
+              userName,
+              password,
+              name,
+            },
+          });
+        }
+        else console.log("Username exists!");
       })
       .catch((err) => console.log(err.message));
-    const newUser = await prisma.user.create({
-      data: {
-        userName,
-        password,
-        name,
-      },
-    });
     return newUser;
   },
   AddToCart: async (parent, args, ctx, info) => {
