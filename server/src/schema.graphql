@@ -3,10 +3,12 @@ type Query {
   products(id: ID): [Product]!
   carts(id: ID): [Cart]!
   payments(id: ID): [Payment]!
+  login(userName:String!,password:String!):Reply!
 }
 
 type Mutation {
   AddUser(userName: String!, password: String!, name: String!): User!
+  EditProfile(userName:String!,doorNo:String,street:String,area:String,landmark:String,state:String,pincode:String):Reply!
   AddToCart(productID: ID!, userID: ID!): Reply!
   DeleteFromCart(productID: ID!, userID: ID!): Reply!
   MakePayment(cartID: ID!, userID: ID!): Payment!
@@ -30,6 +32,7 @@ type Product {
   description: String
 }
 type Reply{
+  userID:String
   message:String
 }
 # type ProductOnCart{
