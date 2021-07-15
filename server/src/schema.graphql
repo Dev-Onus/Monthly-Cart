@@ -3,35 +3,50 @@ type Query {
   products(id: ID): [Product]!
   carts(id: ID): [Cart]!
   payments(id: ID): [Payment]!
+  login(userName:String!,password:String!):Reply!
 }
 
 type Mutation {
   AddUser(userName: String!, password: String!, name: String!): User!
-  AddToCart(productID: ID!, userID: ID!): Cart!
-  DeleteFromCart(productID: ID!, userID: ID!): Cart!
+  EditProfile(userName:String!,doorNo:String,street:String,area:String,landmark:String,state:String,pincode:String):Reply!
+  AddToCart(productID: ID!, userID: ID!): Reply!
+  DeleteFromCart(productID: ID!, userID: ID!): Reply!
   MakePayment(cartID: ID!, userID: ID!): Payment!
 }
 
 type User {
-  id: ID!
-  userName: String!
+  id: ID
+  userName: String
   password: String
-  name: String!
+  name: String
   cart: Cart
   payment: Payment
+  address: Address
+  message:String
 }
 
 type Product {
   id: ID
-  name: String!
-  price: Float!
+  name: String
+  price: Float
   description: String
 }
+type Reply{
+  userID:String
+  message:String
+}
+# type ProductOnCart{
+#   productID: Int
+#   product:   Product
+#   cartID:    Int
+#   cart:      Cart
+#   message:String
+# }
 
 type Cart {
   id: ID
   products: [Product]
-  user: User!
+  user: User
 }
 
 type Payment {
@@ -39,4 +54,15 @@ type Payment {
   user: User!
   amount: Int!
   products: [Product!]
+}
+
+type Address {
+  id:       ID
+  doorNo:   String!
+  street:   String!
+  area:     String!
+  landmark: String
+  state:    String!
+  pincode:  String!
+  user:     User!     
 }

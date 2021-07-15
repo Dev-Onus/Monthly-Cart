@@ -3,12 +3,21 @@ const prisma = new PrismaClient();
 
 const Cart={
     products:async(parent,args,ctx,info)=>{
-        const products=await prisma.product.findMany({
+        const products=await prisma.productOnCart.findMany({
             where:{
-                id:parent.id
+                cartID:parent.id
+            },
+            select:{
+                product:true
             }
         })
-        return products
+        const cartProducts=products.map(item=>{return{
+            id:item.product.id,
+            name:item.product.name,
+            price:item.product.price,
+            description:item.product.description
+        }})
+        return cartProducts
     },
     user:async(parent,args,ctx,info)=>{
         const user=await prisma.user.findMany({

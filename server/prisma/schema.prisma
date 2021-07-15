@@ -19,29 +19,34 @@ model User {
 }
 
 model Product {
-  id          Int     @unique @default(autoincrement())
-  name        String
-  price       Float
-  description String
-  cartID      Int
-  paymentID   String
-  cart        Cart    @relation(fields: [cartID], references: [id])
-  payment     Payment @relation(fields: [paymentID], references: [id])
+  id            Int             @unique @default(autoincrement())
+  name          String
+  price         Float
+  description   String
+  ProductOnCart ProductOnCart[]
+}
+
+model ProductOnCart {
+  productID Int
+  product   Product @relation(fields: [productID], references: [id])
+  cartID    Int
+  cart      Cart    @relation(fields: [cartID], references: [id])
+  @@id([productID, cartID])
 }
 
 model Cart {
-  id      Int       @unique @default(autoincrement())
-  userID  Int       @unique
-  user    User      @relation(fields: [userID], references: [id])
-  Product Product[]
+  id            Int             @unique @default(autoincrement())
+  userID        Int             @unique
+  user          User            @relation(fields: [userID], references: [id])
+  ProductOnCart ProductOnCart[]
 }
 
 model Payment {
-  id       String    @unique
+  id       String          @unique
   amount   Int
-  userID   Int       @unique
-  user     User      @relation(fields: [userID], references: [id])
-  products Product[]
+  userID   Int             @unique
+  user     User            @relation(fields: [userID], references: [id])
+  products String[]
   address  String
 }
 
