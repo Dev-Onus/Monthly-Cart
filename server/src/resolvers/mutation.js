@@ -33,30 +33,24 @@ const Mutation = {
   },
   AddToCart: async (parent, args, ctx, info) => {
     const { productID, userID } = args;
-    let finalCart=[];
+    let reply={
+      message:""
+    };
     const cartExist = await prisma.cart.findMany({
       where: {
         userID: +userID,
       }
     });
-    
     if (cartExist.length === 1) {
-           
       await prisma.productOnCart.create({
         data: {
           cartID: +cartExist[0].id,
           productID: +productID,
         },
-      }).then(data=>console.log(`product added to cart:${cartExist[0].id}`))
-      .catch(e=>console.log(e.message))
+      }).then(data=>reply.message="Success").catch(error=>reply.message=error.message)
       
-      finalCart = await prisma.cart.findMany({
-        where: {
-          userID: +userID,
-        }
-      });
-    }else finalCart.message="Unsuccessful"
-    return finalCart
+    }else reply.message="Unable to find cart"
+    return reply
   },
   DeleteFromCart: async (parent, args, ctx, info) => {
     const { userID, productID } = args;
