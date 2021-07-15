@@ -1,7 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import LoginForm from "./components/Forms/Login/Login";
-import RegisterForm from "./components/Forms/Register/Register";
+import LoginForm from "./modules/templates/Forms/Login/Login";
+import RegisterForm from "./modules/templates/Forms/Register/Register";
+import Products from "./container/pages/Products/Product";
 import App from "./App";
 
 export default function Routes() {
@@ -16,6 +17,9 @@ export default function Routes() {
         </Route>
         <Route exact path="/register">
           <RegisterForm />
+        </Route>
+        <Route path="/products">
+          <Products />
         </Route>
       </Switch>
     </Router>

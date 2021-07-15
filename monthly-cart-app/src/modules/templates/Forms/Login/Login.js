@@ -1,16 +1,11 @@
 import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
-import { Wrapper, InputField, Button, Title } from "./../Form.style";
-
-import { NavLink } from "react-router-dom";
-
-// // validation functions
-// const required = (value) => (value === null ? "Required" : undefined);
-// const email = (value) =>
-//   value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
-//     ? "Invalid email"
-//     : undefined;
-
+import { Wrapper } from "../Form.style";
+import Title from "../../../../components/atoms/Title/Title";
+import SubmitButton from "../../../../components/atoms/Buttons/SubmitButton";
+import NavLinkRoute from "../../../../components/atoms/Link/NavLinkRoute";
+import Input from "../../../../components/atoms/Input/Input";
+import { useHistory } from "react-router-dom";
 const LinkBtn = React.forwardRef(function LinkBtn(props, ref) {
   // eslint-disable-line
   return <NavLink to={props.to} {...props} innerRef={ref} />; // eslint-disable-line
@@ -22,7 +17,11 @@ function LoginForm(props) {
     password: "",
   });
 
-  const handleSubmit = (event) => {};
+  const history = useHistory();
+
+  const handleSubmit = (event) => {
+    history.push("/products");
+  };
 
   const handleChange = (event) => {
     setValues((prevalue) => {
@@ -36,19 +35,19 @@ function LoginForm(props) {
   return (
     <Wrapper>
       <form onSubmit={handleSubmit}>
-        <Title>Sign In</Title>{" "}
+        <Title text="Sign In"></Title>
         <div>
-          <InputField
+          <Input
             name="mobileNumber"
             placeholder="Enter Your Mobile Number"
-            onChange={handleChange}
+            handleChange={handleChange}
             required
           />
         </div>
         <div>
-          <InputField
+          <Input
             name="password"
-            onChange={handleChange}
+            handleChange={handleChange}
             placeholder="Enter Your Password"
             required
           />
@@ -59,18 +58,13 @@ function LoginForm(props) {
           </button> */}
         </div>
         <div>
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            type="submit"
-            // disabled={submitting}
-          >
-            Continue
-          </Button>
+          <SubmitButton handleSubmit={handleSubmit} />
         </div>
         <div>
-          <NavLink to="/register">Don't have an Account? Sign Up</NavLink>
+          <NavLinkRoute
+            path="/register"
+            linkText="Don't have an Account? Sign Up"
+          />
         </div>
       </form>
     </Wrapper>

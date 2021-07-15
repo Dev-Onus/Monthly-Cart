@@ -1,6 +1,6 @@
 import styled from "react-emotion";
 
-export const Wrapper = styled("fragment")`
+export const Wrapper = styled("div")`
   position: absolute;
   left: 50%;
   top: 50%;
@@ -41,7 +41,7 @@ export const Button = styled("button")`
   cursor: pointer;
 `;
 
-export const Title = styled("h3")`
+export const TitleText = styled("h3")`
   font-size: 14px;
   margin-bottom: 10px;
   font-weight: 400;
