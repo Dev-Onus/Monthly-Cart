@@ -8,7 +8,7 @@ type Query {
 
 type Mutation {
   AddUser(userName: String!, password: String!, name: String!): User!
-  EditProfile(userName:String!,doorNo:String,street:String,area:String,landmark:String,state:String,pincode:String):Reply!
+  EditProfile(userName:String!,doorNo:String,street:String,area:String,landmark:String,state:String,pincode:String,mobileNo:String):Reply!
   AddToCart(productID: ID!, userID: ID!): Reply!
   DeleteFromCart(productID: ID!, userID: ID!): Reply!
   MakePayment(cartID: ID!, userID: ID!): Payment!
@@ -19,6 +19,7 @@ type User {
   userName: String
   password: String
   name: String
+  mobileNo:String
   cart: Cart
   payment: Payment
   address: Address
@@ -54,6 +55,7 @@ type Payment {
   user: User!
   amount: Int!
   products: [Product!]
+  payMode:String
 }
 
 type Address {
