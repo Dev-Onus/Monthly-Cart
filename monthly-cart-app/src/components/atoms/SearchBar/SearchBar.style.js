@@ -1,7 +1,6 @@
 import styled from "react-emotion";
 
 export const SearchField = styled("input")`
-  moutline: 0;
   padding: 0.6rem 1rem;
   border: 1px solid #f5f5f6;
   border-radius: 8px;
