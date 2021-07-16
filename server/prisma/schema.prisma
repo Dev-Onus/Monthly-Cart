@@ -12,7 +12,7 @@ model User {
   userName     String   @unique
   password     String
   name         String
-  mobileNo     String
+  mobileNo     String?
   address      Address?
   otherAddress String[]
   cart         Cart?
