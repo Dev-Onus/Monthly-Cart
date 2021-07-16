@@ -10,7 +10,7 @@ type Mutation {
   AddUser(userName: String!, password: String!, name: String!): User!
   EditProfile(userName:String!,doorNo:String,street:String,area:String,landmark:String,state:String,pincode:String,mobileNo:String):Reply!
   AddToCart(productID: ID!, userID: ID!): Reply!
-  DeleteFromCart(productID: ID!, userID: ID!): Reply!
+  DeleteFromCart(productID: ID, userID: ID!): Reply!
   MakePayment(userID: ID!,payMode:String!,amount:String!,address:String!): Payment!
 }
 
