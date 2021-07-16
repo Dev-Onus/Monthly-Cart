@@ -12,6 +12,7 @@ model User {
   userName     String   @unique
   password     String
   name         String
+  mobileNo     String?
   address      Address?
   otherAddress String[]
   cart         Cart?
@@ -48,6 +49,7 @@ model Payment {
   user     User            @relation(fields: [userID], references: [id])
   products String[]
   address  String
+  payMode  String
 }
 
 model Address {
