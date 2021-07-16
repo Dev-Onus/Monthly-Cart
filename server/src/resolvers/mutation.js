@@ -35,6 +35,44 @@ const Mutation = {
       .catch((err) => console.log(err.message));
     return newUser;
   },
+  EditProfile: async (parent, args, ctx, info) => {
+    const { userName, doorNo, street, area, landmark, state, pincode,mobileNo } = args;
+    const reply = {
+      message: "",
+    };
+    await prisma.user
+      .findMany({
+        where: {
+          userName,
+        },
+      })
+      .then(async (data) => {
+        if (data.length === 1) { //User found category
+          if(mobileNo!==null){
+            await prisma.user.update({
+              where:{
+                userName:data[0].userName
+              },
+            })
+          }
+          
+          await prisma.address.create({
+            data: {
+              doorNo,
+              street,
+              area,
+              landmark,
+              state,
+              pincode,
+              userID:data[0].id
+            },
+          }).then((data) => (reply.message = "Profile updated successfully"))
+          .catch((error) => (reply.message = error.message));
+        } else
+          reply.message = "User not found. Please create an account to proceed";
+      });
+    return reply;
+  },
   AddToCart: async (parent, args, ctx, info) => {
     const { productID, userID } = args;
     let reply = {
