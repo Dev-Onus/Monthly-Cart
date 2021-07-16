@@ -11,7 +11,7 @@ type Mutation {
   EditProfile(userName:String!,doorNo:String,street:String,area:String,landmark:String,state:String,pincode:String,mobileNo:String):Reply!
   AddToCart(productID: ID!, userID: ID!): Reply!
   DeleteFromCart(productID: ID!, userID: ID!): Reply!
-  MakePayment(cartID: ID!, userID: ID!): Payment!
+  MakePayment(userID: ID!,payMode:String!,amount:String!,address:String!): Payment!
 }
 
 type User {
@@ -54,7 +54,8 @@ type Payment {
   id: ID
   user: User!
   amount: Int!
-  products: [Product!]
+  address:String!
+  products: [String!]!
   payMode:String
 }
 
