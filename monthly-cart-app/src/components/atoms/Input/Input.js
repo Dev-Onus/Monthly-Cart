@@ -1,5 +1,5 @@
 import React from "react";
-import { InputField } from "../../../modules/templates/Forms/Form.style";
+import { InputField } from "./Input.style";
 
 const Input = (props) => {
   const { name, handleChange, placeholder, required } = props;

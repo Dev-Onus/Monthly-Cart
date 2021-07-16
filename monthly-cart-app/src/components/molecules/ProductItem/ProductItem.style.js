@@ -39,3 +39,9 @@ export const ProductStatus = styled("div")`
   font-weight: bold;
   background: #0000ff;
 `;
+
+export const ProductPrice = styled("div")`
+  color: grey;
+  font-size: 20px;
+  padding: 0.5rem;
+`;

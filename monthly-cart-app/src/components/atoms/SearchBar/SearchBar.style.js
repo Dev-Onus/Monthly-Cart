@@ -14,6 +14,6 @@ export const SearchField = styled("input")`
   min-width: 480px;
   &:focus,
   &:active {
-    border-color: #85b7d9;
+    border-color: white;
   }
 `;
