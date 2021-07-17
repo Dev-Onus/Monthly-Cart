@@ -3,15 +3,29 @@ type Query {
   products(id: ID): [Product]!
   carts(id: ID): [Cart]!
   payments(id: ID): [Payment]!
-  login(userName:String!,password:String!):Reply!
+  login(userName: String!, password: String!): Reply!
 }
 
 type Mutation {
   AddUser(userName: String!, password: String!, name: String!): User!
-  EditProfile(userName:String!,doorNo:String,street:String,area:String,landmark:String,state:String,pincode:String,mobileNo:String):Reply!
+  EditProfile(
+    userName: String!
+    doorNo: String
+    street: String
+    area: String
+    landmark: String
+    state: String
+    pincode: String
+    mobileNo: String
+  ): Reply!
   AddToCart(productID: ID!, userID: ID!): Reply!
-  DeleteFromCart(productID: ID, userID: ID!): Reply!
-  MakePayment(userID: ID!,payMode:String!,amount:String!,address:String!): Payment!
+  DeleteFromCart(productID: ID, userID: ID!, deleteMe: Boolean): Reply!
+  MakePayment(
+    userID: ID!
+    payMode: String!
+    amount: String!
+    address: String!
+  ): Payment!
 }
 
 type User {
@@ -19,11 +33,11 @@ type User {
   userName: String
   password: String
   name: String
-  mobileNo:String
+  mobileNo: String
   cart: Cart
-  payment: Payment
+  payment: [Payment]
   address: Address
-  message:String
+  message: String
 }
 
 type Product {
@@ -32,17 +46,11 @@ type Product {
   price: Float
   description: String
 }
-type Reply{
-  userID:String
-  message:String
+type Reply {
+  userID: String
+  userName: String
+  message: String
 }
-# type ProductOnCart{
-#   productID: Int
-#   product:   Product
-#   cartID:    Int
-#   cart:      Cart
-#   message:String
-# }
 
 type Cart {
   id: ID
@@ -52,20 +60,23 @@ type Cart {
 
 type Payment {
   id: ID
+  userID: Int
   user: User!
   amount: Int!
-  address:String!
+  address: String!
   products: [String!]!
-  payMode:String
+  payMode: String!
+  dateOfPayment:String!
+  message:String
 }
 
 type Address {
-  id:       ID
-  doorNo:   String!
-  street:   String!
-  area:     String!
+  id: ID
+  doorNo: String!
+  street: String!
+  area: String!
   landmark: String
-  state:    String!
-  pincode:  String!
-  user:     User!     
+  state: String!
+  pincode: String!
+  user: User!
 }
