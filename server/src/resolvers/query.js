@@ -46,7 +46,9 @@ const Query = {
   login: async (parent, args, ctx, info) => {
     const { userName, password } = args;
     let reply = {
-      message: "",
+      userID:"",
+      userName:"",
+      message:""
     };
     await prisma.user
       .findMany({
@@ -57,7 +59,7 @@ const Query = {
       .then((data) => {
         if (data.length === 1) {
           const loginCheck=bcrypt.compareSync(password,data[0].password)
-          if (loginCheck) reply.message = "Login Successful";
+          if (loginCheck){reply.message = "Login Successful";reply.userID = data[0].id;reply.userName = data[0].userName;}
           else reply.message = `Hi ${data[0].name}, You entered the wrong password`;
         } else reply.message = "User Not Found";
       });
