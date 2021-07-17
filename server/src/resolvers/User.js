@@ -13,7 +13,7 @@ const User={
     payment:async(parent,args,ctx,info)=>{
         const payments=await prisma.payment.findMany({
             where:{
-                id:parent.id
+                userID:parent.id
             }
         })
         return payments
