@@ -8,15 +8,15 @@ datasource db {
 }
 
 model User {
-  id           Int      @unique @default(autoincrement())
-  userName     String   @unique
+  id           Int       @unique @default(autoincrement())
+  userName     String    @unique
   password     String
   name         String
   mobileNo     String?
   address      Address?
   otherAddress String[]
   cart         Cart?
-  payment      Payment?
+  payment      Payment[]
 }
 
 model Product {
@@ -32,6 +32,7 @@ model ProductOnCart {
   product   Product @relation(fields: [productID], references: [id])
   cartID    Int
   cart      Cart    @relation(fields: [cartID], references: [id])
+
   @@id([productID, cartID])
 }
 
@@ -43,13 +44,14 @@ model Cart {
 }
 
 model Payment {
-  id       String          @unique
-  amount   Int
-  userID   Int             @unique
-  user     User            @relation(fields: [userID], references: [id])
-  products String[]
-  address  String
-  payMode  String
+  id            String   @unique
+  amount        Int
+  userID        Int
+  user          User     @relation(fields: [userID], references: [id])
+  products      String[]
+  address       String
+  payMode       String
+  dateOfPayment DateTime @default(now())
 }
 
 model Address {
