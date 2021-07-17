@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import { Wrapper } from "../Form.style";
 import Title from "../../../../components/atoms/Title/Title";
-import SubmitButton from "../../../../components/atoms/Buttons/SubmitButton";
+import SubmitButton from "../../../../components/atoms/SubmitButton/SubmitButton";
 import NavLinkRoute from "../../../../components/atoms/Link/NavLinkRoute";
 import Input from "../../../../components/atoms/Input/Input";
 const LinkBtn = React.forwardRef(function LinkBtn(props, ref) {
@@ -75,8 +75,9 @@ function RegisterForm(props) {
         </div>
         <div>
           <SubmitButton
-
-          // disabled={submitting}
+            buttonText="Continue"
+            handleSubmit={handleSubmit}
+            // disabled={submitting}
           >
             Continue
           </SubmitButton>

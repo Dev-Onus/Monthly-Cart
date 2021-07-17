@@ -1,5 +1,5 @@
 import React from "react";
-import { TitleText } from "../../../modules/templates/Forms/Form.style";
+import { TitleText } from "./Title.Style";
 
 const Title = (props) => {
   const { text } = props;

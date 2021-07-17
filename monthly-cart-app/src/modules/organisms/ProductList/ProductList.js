@@ -1,8 +1,8 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { css } from "emotion";
 
 import { ProductContainer } from "./ProductList.style";
-import ProductSidebar from "./../../../components/molecules/ProductSidebar/ProductSidebar";
+import ProductFilter from "../../../components/molecules/ProductFilter/ProductFilter";
 import ProductItem from "./../../../components/molecules/ProductItem/ProductItem";
 import Product1 from "./../../../assests/product1.png";
 import Product2 from "./../../../assests/product2.png";
@@ -16,6 +16,7 @@ const productResponse = [
     picture: Product1,
     name: "H&M",
     description: "Women Black Colour bag",
+    price: "2000",
     status: " ",
   },
   {
@@ -23,6 +24,7 @@ const productResponse = [
     picture: Product2,
     name: "Roadster",
     description: "Women Designed bag",
+    price: "2600",
     status: "",
   },
   {
@@ -30,6 +32,7 @@ const productResponse = [
     picture: Product3,
     name: "Tommy Hilfiger",
     description: "Watch with case",
+    price: "6800",
     status: " ",
   },
   {
@@ -37,6 +40,7 @@ const productResponse = [
     picture: Product4,
     name: "Kitty Richards",
     description: "I can't get",
+    price: "4500",
     status: " ",
   },
   {
@@ -44,6 +48,7 @@ const productResponse = [
     picture: Product5,
     name: "Roadster",
     description: "men  sneaker",
+    price: "2200",
     status: "",
   },
   {
@@ -51,6 +56,7 @@ const productResponse = [
     picture: Product6,
     name: "Rayban",
     description: "glasses with case",
+    price: "1100",
     status: " ",
   },
   ////////
@@ -59,6 +65,7 @@ const productResponse = [
     picture: Product1,
     name: "Kitty Richards",
     description: "I can't get no",
+    price: "12100",
     status: " ",
   },
   {
@@ -66,6 +73,7 @@ const productResponse = [
     picture: Product2,
     name: "Kitty Starr",
     description: "I would like to be... under a box!",
+    price: "3200",
     status: "",
   },
   {
@@ -73,6 +81,7 @@ const productResponse = [
     picture: Product3,
     name: "Winston Churchkitty",
     description: " toys, boxes and sleep!",
+    price: "1900",
     status: " ",
   },
   {
@@ -80,6 +89,7 @@ const productResponse = [
     picture: Product4,
     name: "Kitty Richards",
     description: "I can't get no...",
+    price: "1430",
     status: " ",
   },
   {
@@ -87,6 +97,7 @@ const productResponse = [
     picture: Product5,
     name: "Kitty Starr",
     description: "I would like to be",
+    price: "2332",
     status: "",
   },
   {
@@ -94,28 +105,48 @@ const productResponse = [
     picture: Product6,
     name: "Winston Churchkitty",
     description: "sys, boxes and sleep!",
+    price: "1890",
     status: " ",
   },
 ];
 
-const renderProductList = (products) =>
-  products.map((product) => <ProductItem key={product.id} product={product} />);
+const ProductList = (props) => {
+  const [productSearchResult, setProductSearchResult] = useState([]);
+  const { searchItem } = props;
 
-const ProductList = () => (
-  <Fragment>
-    <h1
-      className={css`
-        margin-bottom: 30px;
-      `}
-    >
-      Products
-    </h1>
+  useEffect(() => {
+    const res = productResponse.filter((product) =>
+      product.name.toLowerCase().includes(searchItem)
+    );
+    setProductSearchResult(res);
+  }, [searchItem]);
 
-    <ProductContainer>
-      <ProductSidebar />
-      {renderProductList(productResponse)}
-    </ProductContainer>
-  </Fragment>
-);
+  const renderProductList = (products) =>
+    searchItem.length > 0
+      ? productSearchResult.map((item) => (
+          <ProductItem product={item} key={item.id} />
+        ))
+      : products.map((product) => (
+          <ProductItem key={product.id} product={product} />
+        ));
+
+  return (
+    <Fragment>
+      <h1
+        className={css`
+          margin-bottom: 30px;
+        `}
+      >
+        Products
+      </h1>
+
+      <ProductContainer>
+        <ProductFilter />
+        {/* {value[0]} */}
+        {renderProductList(productResponse)}
+      </ProductContainer>
+    </Fragment>
+  );
+};
 
 export default ProductList;

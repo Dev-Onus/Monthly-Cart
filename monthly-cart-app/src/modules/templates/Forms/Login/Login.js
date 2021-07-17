@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import { Wrapper } from "../Form.style";
 import Title from "../../../../components/atoms/Title/Title";
-import SubmitButton from "../../../../components/atoms/Buttons/SubmitButton";
+import SubmitButton from "../../../../components/atoms/SubmitButton/SubmitButton";
 import NavLinkRoute from "../../../../components/atoms/Link/NavLinkRoute";
 import Input from "../../../../components/atoms/Input/Input";
 import { useHistory } from "react-router-dom";
@@ -58,7 +58,7 @@ function LoginForm(props) {
           </button> */}
         </div>
         <div>
-          <SubmitButton handleSubmit={handleSubmit} />
+          <SubmitButton buttonText="Continue" handleSubmit={handleSubmit} />
         </div>
         <div>
           <NavLinkRoute
