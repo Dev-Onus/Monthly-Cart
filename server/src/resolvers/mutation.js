@@ -58,11 +58,14 @@ const Mutation = {
       .then(async (data) => {
         if (data.length === 1) {
           //User found category
-          if (mobileNo !== null) {
+          if (mobileNo.length!==0) {
             await prisma.user.update({
               where: {
                 userName: data[0].userName,
               },
+              data:{
+                mobileNo:mobileNo
+              }
             });
           }
 
@@ -109,7 +112,7 @@ const Mutation = {
     return reply;
   },
   DeleteFromCart: async (parent, args, ctx, info) => {
-    const { userID, productID } = args;
+    const { userID, productID,deleteMe } = args;
     let reply = {
       message: "",
     };
@@ -122,7 +125,7 @@ const Mutation = {
 
     if (cartExist.length === 1) {
       //Cart found successfully
-      if (productID === null) {
+      if (deleteMe) {
         //Empty the cart when payment done
         await prisma.productOnCart
           .deleteMany({
@@ -162,7 +165,9 @@ const Mutation = {
   },
   MakePayment: async (parent, args, ctx, info) => {
     const { userID, payMode, amount, address } = args;
-    let Payment = {};
+    let Payment={
+      message:""
+    };
     await prisma.cart
       .findMany({
         where: {
@@ -188,22 +193,23 @@ const Mutation = {
                 description: item.product.description,
               };
             });
+            const productsStringified=cartProducts.map((product) => `name:${product.name},price:${product.price}`);
+            const txnID=Math.random().toString(30).slice(-8);
             Payment = await prisma.payment.create({
               data: {
-                id: Math.random().toString(30).slice(-8),
+                id: txnID,
                 userID: +userID,
                 payMode,
                 amount: +amount,
                 address,
-                products: cartProducts.map(
-                  (product) => `name:${product.name},price:${product.price}`
-                ),
+                products:productsStringified,
               },
             });
-          }
-        }
-      });
-    console.log(Payment);
+            Payment.message="Payment successful"
+          } else Payment.message="No products in cart"
+        } else Payment.message="Cart not Found"
+      })
+      .catch(e=>Payment.message=e.message)
     return Payment;
   },
 };
