@@ -10,10 +10,14 @@ import {
 
 const ProductItem = (props) => {
   const { product } = props;
+
   const AddCart = () => {};
   return (
     <Product>
-      <ProductPicture alt="Product" src={product.picture} />
+      <ProductPicture
+        alt="Product"
+        src="https://source.unsplash.com/random/150*150"
+      />
       <ProductName>{product.name}</ProductName>
       <ProductDescription>{product.description}</ProductDescription>
       <ProductPrice> Rs.{product.price}</ProductPrice>
