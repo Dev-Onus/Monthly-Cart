@@ -4,10 +4,12 @@ const prisma = new PrismaClient();
 
 const Mutation = {
   AddUser: async (parent, args, ctx, info) => {
-    const { name, userName, password } = args;
+    const { name, userName, password, mobileNo } = args;
     const salt = await brcrypt.genSalt(10);
     const securePassword = await brcrypt.hash(password, salt);
-    let newUser = [];
+    let reply = {
+      message:""
+    };
     await prisma.user
       .findMany({
         where: {
@@ -17,11 +19,12 @@ const Mutation = {
       .then(async (data) => {
         if (data.length === 0) {
           // When the new User is created
-          newUser = await prisma.user.create({
+          const newUser = await prisma.user.create({
             data: {
               userName,
               password: securePassword,
               name,
+              mobileNo,
             },
           });
           const newCart = await prisma.cart.create({
@@ -29,11 +32,11 @@ const Mutation = {
             data: {
               userID: newUser.id,
             },
-          });
-        } else newUser.message = "Username exists!";
+          }).then(data=>reply.message="success")
+        } else reply.message = "Username exists!";
       })
-      .catch((err) => console.log(err.message));
-    return newUser;
+      .catch((err) => reply.message=err.message);
+    return reply
   },
   EditProfile: async (parent, args, ctx, info) => {
     const {
