@@ -9,9 +9,9 @@ export const Product = styled("div")`
 `;
 
 export const ProductPicture = styled("img")`
-  margin: 0rem 3rem;
+  margin: 0rem 1rem;
   border-radius: 10px;
-  width: 200px;
+  width: 250px;
   align-self: flex-start;
 `;
 
@@ -21,8 +21,8 @@ export const ProductName = styled("h2")`
 `;
 
 export const ProductDescription = styled("h3")`
-  font-size: 14px;
-  margin-bottom: 10px;
+  font-size: 18px;
+  margin-bottom: 5px;
   font-weight: 400;
 `;
 

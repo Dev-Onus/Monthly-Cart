@@ -10,3 +10,8 @@ export const ProductContainer = styled("div")`
 // grid-template-columns:
 // [product-start] 200px [product-item-start] repeat(4, 1fr)
 // [product-item-end];
+
+export const ProductTitle = styled("h1")`
+  margin: 2rem;
+  grid-column: 1;
+`;

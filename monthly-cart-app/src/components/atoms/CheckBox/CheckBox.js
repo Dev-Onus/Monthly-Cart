@@ -2,7 +2,14 @@ import React from "react";
 import { CheckBoxCotainer } from "./CheckBox.style";
 
 const CheckBox = (props) => {
-  return <CheckBoxCotainer type="checkbox"></CheckBoxCotainer>;
+  const { handleChange, checked } = props;
+  return (
+    <CheckBoxCotainer
+      type="checkbox"
+      checked={checked}
+      onChange={handleChange}
+    ></CheckBoxCotainer>
+  );
 };
 
 export default CheckBox;

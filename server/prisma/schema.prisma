@@ -13,8 +13,8 @@ model User {
   password     String
   name         String
   mobileNo     String?
-  address      Address?
   otherAddress String[]
+  address      Address?
   cart         Cart?
   payment      Payment[]
 }
@@ -29,9 +29,9 @@ model Product {
 
 model ProductOnCart {
   productID Int
-  product   Product @relation(fields: [productID], references: [id])
   cartID    Int
   cart      Cart    @relation(fields: [cartID], references: [id])
+  product   Product @relation(fields: [productID], references: [id])
 
   @@id([productID, cartID])
 }
@@ -47,11 +47,11 @@ model Payment {
   id            String   @unique
   amount        Int
   userID        Int
-  user          User     @relation(fields: [userID], references: [id])
   products      String[]
   address       String
   payMode       String
   dateOfPayment DateTime @default(now())
+  user          User     @relation(fields: [userID], references: [id])
 }
 
 model Address {
