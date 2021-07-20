@@ -6,21 +6,39 @@ import SubmitButton from "../../../../components/atoms/SubmitButton/SubmitButton
 import NavLinkRoute from "../../../../components/atoms/Link/NavLinkRoute";
 import Input from "../../../../components/atoms/Input/Input";
 import { useHistory } from "react-router-dom";
+import {useQuery,gql} from '@apollo/client'
+
 const LinkBtn = React.forwardRef(function LinkBtn(props, ref) {
   // eslint-disable-line
   return <NavLink to={props.to} {...props} innerRef={ref} />; // eslint-disable-line
 });
 
+const loginQuery=gql`
+  query loginFn($userName:String!,$password:String!){
+    login(userName:$userName,password:$password){
+      userID
+      userName
+      message
+    }
+  }
+`
+
 function LoginForm(props) {
   const [values, setValues] = useState({
-    mobileNumber: "",
+    userName: "",
     password: "",
   });
-
   const history = useHistory();
-
+  const {data}=useQuery(loginQuery,{variables:values})
+  
   const handleSubmit = (event) => {
-    history.push("/products");
+    event.preventDefault();
+    alert(data?data.login.message:'')
+    if(data){
+      if(data.login.message==="Login Successful"){
+        history.push('/products')
+      }
+    }
   };
 
   const handleChange = (event) => {
@@ -38,8 +56,8 @@ function LoginForm(props) {
         <Title text="Sign In"></Title>
         <div>
           <Input
-            name="mobileNumber"
-            placeholder="Enter Your Mobile Number"
+            name="userName"
+            placeholder="Enter Your Username"
             handleChange={handleChange}
             required
           />
@@ -47,6 +65,7 @@ function LoginForm(props) {
         <div>
           <Input
             name="password"
+            type="password"
             handleChange={handleChange}
             placeholder="Enter Your Password"
             required
