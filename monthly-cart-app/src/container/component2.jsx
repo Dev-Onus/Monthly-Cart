@@ -1,8 +1,9 @@
 import React from "react";
+import { learnToCreate, header, width,button } from "./component2.style";
 const component2 = () => {
   return (
-    <div class="container">
-      <div class="jumbotron">
+    <div>
+      <div className={learnToCreate}>
         <h1>Learn to create websites </h1>
         <p class="lead">
           In today's world internet is the most popular way of connecting with
@@ -10,38 +11,38 @@ const component2 = () => {
         </p>
         <p>
           {" "}
-          <a href="#" class="btn btn-success btn-lg" target="_blank">
+          <a href="#" className={button} target="_blank">
             Get started today
           </a>
         </p>
       </div>
-      <div class="row">
-        <div class="col-md-4">
+      <div className={header}>
+        <div className={width}>
           <h2>HTML</h2>
           <p>HTML is a standard Markup Language</p>
           <p>
-            <a href="#" class="btn btn-success" target="_blank">
-              Learn More
+            <a href="#" className={button} target="_blank">
+              Learn More 
             </a>
           </p>
         </div>
-        <div class="col-md-4">
+        <div className={width}>
           <h2>CSS</h2>
           <p>CSS is used for describing web pages. </p>
           <p>
-            <a href="#" class="btn btn-success" target="_blank">
+            <a href="#" className={button} target="_blank">
               Learn More
             </a>
           </p>
         </div>
-        <div class="col-md-4">
+        <div className={width}>
           <h2>BootStrap</h2>
           <p>
             BootStrap is a powerful front-end famework for faster and easier web
             development{" "}
           </p>
           <p>
-            <a href="#" class="btn btn-success" target="_blank">
+            <a href="#" className={button} target="_blank">
               Learn More
             </a>
           </p>
