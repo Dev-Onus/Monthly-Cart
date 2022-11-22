@@ -72,6 +72,12 @@ const getSetupContainerStyleIB = () => {
   const headerIconStyle = css({
     flex: 'none'
   })
+  const navbar = css({
+    backgroundColor: 'dark'
+  })
+  // const navbar = css({
+  //   backgroundColor: 'red'
+  // })
   const setupHeaderStyle = css({
     // marginBottom: '1.5rem',
     background: '#ffffff',
@@ -241,7 +247,8 @@ const getSetupContainerStyleIB = () => {
     removeAutopayStyle,
     sucessMsgStyles,
     disclaimerContent,
-    disclaimerHeaderStyle
+    disclaimerHeaderStyle,
+    navbar
   }
   return [mobileStyles, desktopStyles]
 }
