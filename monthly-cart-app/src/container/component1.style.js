@@ -73,11 +73,18 @@ const getSetupContainerStyleIB = () => {
     flex: 'none'
   })
   const navbar = css({
-    backgroundColor: 'dark'
+    backgroundColor: '#343a40',
+    padding: '0.5rem 1rem'
   })
-  // const navbar = css({
-  //   backgroundColor: 'red'
-  // })
+  const navbarAlign = css({
+    display: 'flex',
+    justifyContent: 'center'
+  })
+  const navbarCognizant = css({
+    color: "#fff",
+    marginLeft: '3rem',
+    textDecoration: "none"
+  })
   const setupHeaderStyle = css({
     // marginBottom: '1.5rem',
     background: '#ffffff',
@@ -193,6 +200,19 @@ const getSetupContainerStyleIB = () => {
     textDecoration: 'none',
     color: '#0A41C5'
   })
+  const footer = css({
+
+    display: "flex",
+
+    justifyContent: "space-between",
+
+  });
+
+  const footerstyle = css({
+
+    marginTop: "16px",
+
+  });
   const sucessMsgStylesOLB = css({
     marginTop: '1rem'
   })
@@ -248,7 +268,11 @@ const getSetupContainerStyleIB = () => {
     sucessMsgStyles,
     disclaimerContent,
     disclaimerHeaderStyle,
-    navbar
+    navbar,
+    navbarCognizant,
+    navbarAlign,
+    footerstyle,
+    footer
   }
   return [mobileStyles, desktopStyles]
 }

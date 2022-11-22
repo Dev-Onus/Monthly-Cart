@@ -1,22 +1,21 @@
-import React from 'react'
-
-import { css } from '@emotion/css'
-
-const color = 'darkgreen'
-
+import React from "react";
+import getSetupContainerStyleIB from "./component1.style";
+import { css as cxCss, cx } from "@emotion/css";
 const component3 = () => {
+  const [mobileStyles] = getSetupContainerStyleIB() || {};
   return (
-    <div
-    className={css`
-      background-color: hotpink;
-      &:hover {
-        color: ${color};
-      }
-    `}
-  >
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, pariatur hic fuga laudantium a esse eveniet dolorem, in earum doloremque optio accusantium tempora, quisquam fugiat eaque! Enim molestias sint ipsa.
-  </div>
-  )
-}
-
-export default component3
+    <footer>
+      <div className={cx(`${cxCss({ ...mobileStyles.footer })}`)}>
+        <div>
+          <p>Copyright &copy; 2021 Nair</p>
+        </div>
+        <div className={cx(`${cxCss({ ...mobileStyles.footerstyle })}`)}>
+          <a href="#">Terms of use</a>
+          <span>|</span>
+          <a href="#">Privacy Policy</a>
+        </div>
+      </div>
+    </footer>
+  );
+};
+export default component3;
