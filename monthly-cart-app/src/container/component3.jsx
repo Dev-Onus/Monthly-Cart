@@ -7,7 +7,7 @@ const component3 = () => {
     <footer>
       <div className={cx(`${cxCss({ ...mobileStyles.footer })}`)}>
         <div>
-          <p>Copyright &copy; 2021 Nair</p>
+          <p>Copyright &copy; 2021 Cognizant</p>
         </div>
         <div className={cx(`${cxCss({ ...mobileStyles.footerstyle })}`)}>
           <a href="#">Terms of use</a>
